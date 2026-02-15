@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nazim Plomberie</title>
+    <title>Nazim Plomberie - Boumerdès</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -86,7 +86,7 @@
         }
 
         .cta-btn:hover { background-color: #c0392b; }
-        .cta-btn small { display: block; font-weight: 400; font-size: 0.7rem; text-transform: none; margin-top: 2px;}
+        .cta-btn small { display: block; font-weight: 400; font-size: 0.85rem; text-transform: none; margin-top: 2px;}
 
         /* --- HERO SECTION --- */
         .hero {
@@ -276,20 +276,51 @@
 
         .submit-btn:hover { background-color: #2980b9; }
 
+        /* Footer Info & Socials */
         .contact-footer {
-            margin-top: 20px;
-            font-size: 0.85rem;
+            margin-top: 30px;
+            font-size: 0.9rem;
             color: #7f8c8d;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+            border-top: 1px solid #dcdcdc;
+            padding-top: 20px;
+        }
+
+        .footer-details p {
+            margin-bottom: 5px;
+        }
+
+        .footer-socials {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .social-label {
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
         }
 
         .social-icons i {
-            margin-left: 10px;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             color: #555;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .social-icons i:hover {
+            color: #3498db;
+            transform: scale(1.1);
         }
 
         /* --- RESPONSIVE --- */
@@ -303,7 +334,7 @@
                 flex-direction: column;
                 margin: 20px 0;
                 text-align: center;
-                display: none; /* Hide menu on mobile for simplicity */
+                display: none; /* Hide menu on mobile */
             }
 
             .cards-container {
@@ -315,9 +346,20 @@
                 justify-content: center;
             }
             
-            .hero-logo-overlay { display: none; } /* Hide big logo on mobile */
+            .hero-logo-overlay { display: none; }
 
             .left-column { margin-bottom: 40px; padding-right: 0;}
+
+            .contact-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .footer-socials {
+                align-items: flex-start;
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -340,9 +382,10 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <a href="tel:+123456789" class="cta-btn">
+        <!-- UPDATED PHONE NUMBER IN HEADER -->
+        <a href="tel:0560898208" class="cta-btn">
             Urgence Dépannage
-            <small>Appeler maintenant</small>
+            <small>05 60 89 82 08</small>
         </a>
     </header>
 
@@ -377,7 +420,6 @@
             </div>
             <!-- Card 3 -->
             <div class="card">
-                <i class="fa-solid fa-air-conditioner"></i> <!-- Note: fa-air-conditioner requires Pro, using custom icon logic or similar -->
                 <i class="fa-solid fa-wind"></i>
                 <h3>Installation Climatiseur</h3>
                 <p>Installation professionnelle de systèmes de climatisation, split systems et recharges de gaz.</p>
@@ -391,9 +433,9 @@
         <div class="left-column">
             <h2 class="section-title">POURQUOI NOUS CHOISIR ?</h2>
             <ul class="why-us-list">
-                <li><i class="fa-solid fa-circle-check"></i> Disponibilité</li>
-                <li><i class="fa-solid fa-circle-check"></i> Qualité</li>
-                <li><i class="fa-solid fa-circle-check"></i> Expertise</li>
+                <li><i class="fa-solid fa-circle-check"></i> Disponibilité 7j/7</li>
+                <li><i class="fa-solid fa-circle-check"></i> Qualité garantie</li>
+                <li><i class="fa-solid fa-circle-check"></i> Expertise certifiée</li>
             </ul>
         </div>
 
@@ -417,15 +459,20 @@
                 <button type="submit" class="submit-btn">ENVOYER</button>
             </form>
 
+            <!-- UPDATED FOOTER INFO -->
             <div class="contact-footer">
-                <div>
-                    Tél: 00 23 48 223 23<br>
-                    Constantine, Algérie 18 03
+                <div class="footer-details">
+                    <p><i class="fa-solid fa-phone"></i> <strong>05 60 89 82 08</strong></p>
+                    <p><i class="fa-solid fa-location-dot"></i> Cité 351, Boumerdès, Algérie</p>
                 </div>
-                <div class="social-icons">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-youtube"></i>
+                
+                <div class="footer-socials">
+                    <span class="social-label">Nazim Plomberie services</span>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

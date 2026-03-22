@@ -1,482 +1,673 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nazim Plomberie - Boumerdès</title>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & BASIC SETUP --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prof. Benchine Said | Cours de Français BAC</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060a12;
+  --surface: #0d1423;
+  --card: #111827;
+  --border: rgba(255,255,255,0.08);
+  --blue: #3b82f6;
+  --cyan: #22d3ee;
+  --violet: #a78bfa
+  --pink: #f472b6;
+  --emerald: #34d399;
+  --amber: #fbbf24;
+  --red: #f87171;
+  --text: #eef2ff;
+  --muted: #7a8aaa;
+  --glow-b: 0 0 40px rgba(59,130,246,0.4);
+  --glow-v: 0 0 40px rgba(167,139,250,0.4);
+  --glow-c: 0 0 40px rgba(34,211,238,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f6f8;
-            color: #333;
-        }
+/* ── ANIMATED BG ORBS ── */
+.orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.18;animation:drift 18s ease-in-out infinite alternate;}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,#3b82f6,transparent);top:-200px;left:-200px;animation-delay:0s;}
+.orb2{width:600px;height:600px;background:radial-gradient(circle,#a78bfa,transparent);bottom:-150px;right:-150px;animation-delay:-6s;}
+.orb3{width:500px;height:500px;background:radial-gradient(circle,#22d3ee,transparent);top:40%;left:40%;animation-delay:-12s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}100%{transform:translate(60px,40px) scale(1.15);}}
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;padding:0 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,10,18,0.7);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;display:flex;align-items:center;gap:10px;}
+.logo-icon{width:36px;height:36px;border-radius:8px;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  box-shadow:var(--glow-b);}
+.logo-text span{color:var(--cyan);}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.04em;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{padding:.5rem 1.4rem;border-radius:8px;font-weight:600;font-size:.85rem;text-decoration:none;
+  background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;
+  box-shadow:var(--glow-b);transition:opacity .2s,transform .2s;}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
 
-        /* --- HEADER --- */
-        header {
-            background-color: #2c3e50; /* Dark Blue */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            color: white;
-            border-bottom: 1px solid #34495e;
-        }
+/* ── HERO ── */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:100px 6% 80px;text-align:center;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;opacity:0.04;
+  background-image:linear-gradient(var(--blue) 1px,transparent 1px),linear-gradient(90deg,var(--blue) 1px,transparent 1px);
+  background-size:60px 60px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:.45rem 1.1rem;border-radius:50px;
+  border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.07);
+  font-size:.8rem;font-weight:600;color:var(--cyan);letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:1.8rem;animation:fadeUp .8s both;}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);
+  animation:pulse 2s infinite;box-shadow:0 0 8px var(--emerald);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.05;
+  margin-bottom:1.4rem;animation:fadeUp .8s .15s both;}
+.hero h1 .line2{display:block;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;
+  line-height:1.7;animation:fadeUp .8s .3s both;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .45s both;}
+.btn-primary{padding:.85rem 2.2rem;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;
+  background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;
+  box-shadow:0 0 30px rgba(59,130,246,.35),0 4px 15px rgba(0,0,0,.4);
+  transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 50px rgba(59,130,246,.5),0 8px 25px rgba(0,0,0,.5);}
+.btn-secondary{padding:.85rem 2.2rem;border-radius:12px;font-weight:600;font-size:.95rem;text-decoration:none;
+  border:1.5px solid var(--border);color:var(--text);background:rgba(255,255,255,.04);
+  transition:all .2s;}
+.btn-secondary:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(34,211,238,.06);}
 
-        .header-logo {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
+/* HERO CARDS 3D */
+.hero-cards-wrap{position:relative;margin-top:4rem;perspective:1000px;animation:fadeUp .8s .6s both;}
+.hero-cards{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;transform:rotateX(8deg);transform-style:preserve-3d;}
+.hero-stat-card{padding:1.2rem 1.8rem;border-radius:16px;background:var(--card);
+  border:1px solid var(--border);text-align:center;min-width:140px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  transition:transform .3s;position:relative;overflow:hidden;}
+.hero-stat-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;
+  background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(167,139,250,.1));}
+.hero-stat-card:hover{transform:translateY(-6px) rotateX(-4deg);}
+.hero-stat-card:hover::before{opacity:1;}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{font-size:.8rem;color:var(--muted);margin-top:.2rem;}
 
-        .header-logo i {
-            font-size: 2rem;
-            margin-right: 10px;
-            color: #bdc3c7;
-        }
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 
-        .header-logo span {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
+/* ── SECTION COMMONS ── */
+section{position:relative;z-index:1;padding:100px 6%;}
+.section-tag{display:inline-block;padding:.3rem .9rem;border-radius:50px;
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;}
+.section-tag.blue{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.section-tag.violet{background:rgba(167,139,250,.15);color:var(--violet);border:1px solid rgba(167,139,250,.3);}
+.section-tag.cyan{background:rgba(34,211,238,.12);color:var(--cyan);border:1px solid rgba(34,211,238,.3);}
+.section-tag.emerald{background:rgba(52,211,153,.12);color:var(--emerald);border:1px solid rgba(52,211,153,.3);}
+.section-tag.pink{background:rgba(244,114,182,.12);color:var(--pink);border:1px solid rgba(244,114,182,.3);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:.8rem;line-height:1.1;}
+.section-sub{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:560px;}
+.section-header{margin-bottom:3.5rem;}
 
-        .header-logo .blue-text { color: #3498db; }
+/* ── PROF SECTION ── */
+.prof-section{background:linear-gradient(135deg,rgba(59,130,246,.04),rgba(167,139,250,.04));
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.prof-img-wrap{position:relative;}
+.prof-avatar{width:100%;max-width:380px;aspect-ratio:1;border-radius:24px;
+  background:linear-gradient(135deg,var(--surface),var(--card));
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:8rem;position:relative;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.6),var(--glow-b);}
+.prof-avatar::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(167,139,250,.08));}
+.prof-badge-float{position:absolute;right:-20px;bottom:40px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:1rem 1.4rem;box-shadow:0 20px 40px rgba(0,0,0,.5),var(--glow-v);}
+.badge-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--violet);}
+.badge-lbl{font-size:.78rem;color:var(--muted);}
+.prof-info h2{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;margin-bottom:.4rem;}
+.prof-info .subtitle{color:var(--cyan);font-size:1rem;font-weight:600;margin-bottom:1.4rem;}
+.prof-info p{color:var(--muted);line-height:1.8;margin-bottom:2rem;font-size:.97rem;}
+.prof-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem;}
+.prof-tag{padding:.35rem .9rem;border-radius:8px;font-size:.8rem;font-weight:600;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);}
+.filieres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
+.filiere-item{padding:.6rem 1rem;border-radius:10px;font-size:.82rem;font-weight:600;text-align:center;
+  border:1px solid var(--border);background:rgba(255,255,255,.03);
+  transition:all .25s;cursor:default;}
+.filiere-item:hover{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.4);color:var(--blue);}
+.filiere-item.sci{color:var(--emerald);}
+.filiere-item.lett{color:var(--violet);}
+.filiere-item.tech{color:var(--amber);}
+.filiere-item.math{color:var(--cyan);}
+.filiere-item.gest{color:var(--pink);}
 
-        nav ul {
-            display: flex;
-            gap: 30px;
-        }
+/* ── SUJETS BAC ── */
+.bac-section{}
+.bac-filters{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.filter-btn{padding:.45rem 1.1rem;border-radius:50px;font-size:.83rem;font-weight:600;
+  border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .2s;}
+.filter-btn.active,.filter-btn:hover{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.5);color:var(--blue);}
+.bac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+.bac-card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer;
+  transform-style:preserve-3d;perspective:600px;}
+.bac-card:hover{transform:translateY(-8px) rotateX(3deg);
+  box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 30px rgba(59,130,246,.15);}
+.bac-card-top{padding:1.4rem 1.4rem 1rem;position:relative;}
+.bac-year-badge{position:absolute;top:1.2rem;right:1.2rem;
+  padding:.3rem .8rem;border-radius:8px;font-size:.78rem;font-weight:700;
+  background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;}
+.bac-icon{font-size:2rem;margin-bottom:.8rem;}
+.bac-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.4rem;}
+.bac-card .bac-filiere{font-size:.8rem;color:var(--muted);}
+.bac-card-bot{padding:.8rem 1.4rem 1.2rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;}
+.bac-meta{display:flex;gap:.8rem;}
+.meta-tag{padding:.25rem .7rem;border-radius:6px;font-size:.75rem;font-weight:600;}
+.meta-tag.corr{background:rgba(52,211,153,.15);color:var(--emerald);}
+.meta-tag.subj{background:rgba(251,191,36,.12);color:var(--amber);}
+.bac-open-btn{width:32px;height:32px;border-radius:8px;
+  background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);
+  display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1rem;
+  transition:all .2s;}
+.bac-card:hover .bac-open-btn{background:var(--blue);color:#fff;}
 
-        nav ul li a {
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            color: #ecf0f1;
-            transition: color 0.3s;
-        }
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:2rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:24px;
+  width:100%;max-width:760px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 60px 120px rgba(0,0,0,.8),var(--glow-b);}
+.modal-header{padding:1.5rem 2rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;}
+.modal-header h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;}
+.modal-close{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.07);
+  border:none;color:var(--text);font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;}
+.modal-close:hover{background:rgba(248,113,113,.15);color:var(--red);}
+.modal-body{padding:2rem;overflow-y:auto;flex:1;}
+.modal-section{margin-bottom:2rem;}
+.modal-section h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;
+  color:var(--cyan);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+.modal-section p{color:var(--muted);line-height:1.8;font-size:.93rem;}
+.correction-box{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);
+  border-radius:12px;padding:1.2rem;margin-top:.8rem;}
+.correction-box p{color:var(--text);line-height:1.9;}
+.corr-step{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:.8rem;}
+.step-num{min-width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--emerald),var(--cyan));
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#000;margin-top:1px;}
 
-        nav ul li a:hover { color: #3498db; }
+/* ── INSCRIPTION ── */
+.inscr-section{background:linear-gradient(135deg,rgba(167,139,250,.04),rgba(244,114,182,.04));
+  border-top:1px solid var(--border);}
+.inscr-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.inscr-info h2{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:1rem;}
+.inscr-info p{color:var(--muted);line-height:1.8;margin-bottom:2rem;}
+.info-cards{display:flex;flex-direction:column;gap:.8rem;}
+.info-card{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;}
+.info-card-icon{width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.info-card-icon.v{background:rgba(52,211,153,.15);}
+.info-card-icon.t{background:rgba(251,191,36,.15);}
+.info-card-icon.l{background:rgba(59,130,246,.15);}
+.info-card-text strong{display:block;font-size:.9rem;font-weight:600;margin-bottom:.1rem;}
+.info-card-text span{font-size:.82rem;color:var(--muted);}
 
-        .cta-btn {
-            background-color: #e74c3c; /* Red */
-            padding: 10px 20px;
-            text-align: center;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: white;
-            transition: background 0.3s;
-        }
+/* FORM */
+.inscr-form{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.2rem;
+  box-shadow:0 40px 80px rgba(0,0,0,.4),var(--glow-v);}
+.inscr-form h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:.4rem;}
+.inscr-form .form-sub{font-size:.85rem;color:var(--muted);margin-bottom:1.8rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem;}
+.form-group label{font-size:.82rem;font-weight:600;color:var(--muted);letter-spacing:.04em;}
+.form-group input,.form-group select{
+  padding:.8rem 1rem;border-radius:10px;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  color:var(--text);font-family:'Outfit',sans-serif;font-size:.92rem;
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;}
+.form-group input:focus,.form-group select:focus{
+  border-color:var(--violet);box-shadow:0 0 0 3px rgba(167,139,250,.2);}
+.form-group select option{background:#1a1f2e;color:var(--text);}
+.form-group input::placeholder{color:var(--muted);}
+.submit-btn{width:100%;padding:1rem;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--violet),var(--pink));
+  color:#fff;font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;
+  cursor:pointer;transition:opacity .2s,transform .2s;letter-spacing:.03em;
+  box-shadow:0 0 30px rgba(167,139,250,.35),0 4px 15px rgba(0,0,0,.4);}
+.submit-btn:hover{opacity:.88;transform:translateY(-2px);}
+.success-msg{display:none;text-align:center;padding:1.5rem;border-radius:14px;
+  background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:var(--emerald);}
+.success-msg .check{font-size:2.5rem;margin-bottom:.5rem;}
+.success-msg h4{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.3rem;}
+.success-msg p{font-size:.88rem;color:var(--muted);}
 
-        .cta-btn:hover { background-color: #c0392b; }
-        .cta-btn small { display: block; font-weight: 400; font-size: 0.85rem; text-transform: none; margin-top: 2px;}
+/* ── FOOTER ── */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:3rem 6%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;z-index:1;position:relative;}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--text);}
+.footer-logo span{color:var(--cyan);}
+.footer-copy{font-size:.82rem;color:var(--muted);}
+.footer-links{display:flex;gap:1.4rem;}
+.footer-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--text);}
 
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.6)), url('https://images.unsplash.com/photo-1584622050111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 550px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 10%;
-            color: white;
-        }
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .prof-grid,.inscr-grid{grid-template-columns:1fr;}
+  .prof-badge-float{right:10px;}
+  .hero-cards{transform:none;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .filieres-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr;}
+  .bac-grid{grid-template-columns:1fr;}
+  section{padding:70px 5%;}
+}
 
-        .hero-text {
-            max-width: 600px;
-        }
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;top:68px;left:0;right:0;z-index:190;
+  background:rgba(6,10,18,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:1.5rem 6%;
+  display:none;flex-direction:column;gap:1rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:1rem;font-weight:500;
+  padding:.6rem 0;border-bottom:1px solid var(--border);}
+.mobile-menu a:last-child{border:none;}
 
-        .hero-text h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        /* Large Logo Overlay on the right */
-        .hero-logo-overlay {
-            text-align: center;
-            opacity: 0.9;
-        }
-        
-        .hero-logo-overlay i {
-            font-size: 5rem;
-            color: #2ecc71; /* Green accent */
-            background: white;
-            border-radius: 50%;
-            padding: 20px;
-            margin-bottom: 10px;
-        }
-
-        .hero-logo-overlay h2 {
-            font-size: 3rem;
-            text-transform: uppercase;
-            color: #2c3e50;
-            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
-        }
-
-        .hero-logo-overlay h2 span { color: #3498db; }
-
-        /* --- SERVICES SECTION --- */
-        .services {
-            padding: 60px 10%;
-            text-align: center;
-        }
-
-        .section-title {
-            text-align: left;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2c3e50;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        .cards-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            border: 2px solid #3498db; /* Blue Border */
-            border-radius: 5px;
-            padding: 40px 20px;
-            flex: 1;
-            transition: transform 0.3s;
-        }
-
-        .card:hover { transform: translateY(-5px); }
-
-        .card i {
-            font-size: 3rem;
-            color: #3498db;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .card p {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            line-height: 1.5;
-        }
-
-        /* --- BOTTOM SECTION (Info & Form) --- */
-        .bottom-section {
-            padding: 40px 10%;
-            display: flex;
-            justify-content: space-between;
-            background-color: #e5e8e8;
-        }
-
-        .left-column {
-            flex: 1;
-            padding-right: 50px;
-        }
-
-        .why-us-list {
-            margin-top: 20px;
-        }
-
-        .why-us-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            color: #2c3e50;
-        }
-
-        .why-us-list li i {
-            color: #27ae60; /* Green check */
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .right-column {
-            flex: 1;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .form-group {
-            flex: 1;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: inherit;
-            background: #fff;
-        }
-
-        textarea {
-            resize: vertical;
-            height: 80px;
-        }
-
-        .submit-btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px;
-            text-transform: uppercase;
-            font-weight: bold;
-            cursor: pointer;
-            width: 150px;
-            align-self: flex-end;
-        }
-
-        .submit-btn:hover { background-color: #2980b9; }
-
-        /* Footer Info & Socials */
-        .contact-footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-top: 1px solid #dcdcdc;
-            padding-top: 20px;
-        }
-
-        .footer-details p {
-            margin-bottom: 5px;
-        }
-
-        .footer-socials {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .social-label {
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons i {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #555;
-            transition: transform 0.2s, color 0.2s;
-        }
-
-        .social-icons i:hover {
-            color: #3498db;
-            transform: scale(1.1);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            header, .hero, .services, .bottom-section {
-                padding: 20px;
-                flex-direction: column;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                margin: 20px 0;
-                text-align: center;
-                display: none; /* Hide menu on mobile */
-            }
-
-            .cards-container {
-                flex-direction: column;
-            }
-
-            .hero {
-                text-align: center;
-                justify-content: center;
-            }
-            
-            .hero-logo-overlay { display: none; }
-
-            .left-column { margin-bottom: 40px; padding-right: 0;}
-
-            .contact-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            
-            .footer-socials {
-                align-items: flex-start;
-                text-align: left;
-            }
-        }
-    </style>
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="header-logo">
-            <i class="fa-solid fa-faucet-drip"></i>
-            <span>
-                NAZIM<br>
-                <span class="blue-text">PLOMBERIE</span>
-            </span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">À Propos</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <!-- UPDATED PHONE NUMBER IN HEADER -->
-        <a href="tel:0560898208" class="cta-btn">
-            Urgence Dépannage
-            <small>05 60 89 82 08</small>
-        </a>
-    </header>
+<!-- BG ORBS -->
+<div class="orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>L'expertise en plomberie et climatisation au service de votre confort</h1>
-            <p>Installation, entretien et dépannage rapide (Chaud & Froid) pour particuliers et professionnels.</p>
-        </div>
-        
-        <div class="hero-logo-overlay">
-            <i class="fa-solid fa-droplet"></i>
-            <h2>Nazim<br><span>Plomberie</span></h2>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">📚</div>
+    <div class="logo-text">Benchine<span> Said</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#prof">Le Prof</a></li>
+    <li><a href="#bac">Sujets BAC</a></li>
+    <li><a href="#inscription">Inscription</a></li>
+  </ul>
+  <a href="#inscription" class="nav-cta">S'inscrire</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <!-- Services Section -->
-    <section class="services">
-        <h2 class="section-title">NOS SERVICES</h2>
-        <div class="cards-container">
-            <!-- Card 1 -->
-            <div class="card">
-                <i class="fa-solid fa-faucet"></i>
-                <h3>Plomberie Générale</h3>
-                <p>Installation colonne douche, évier, robinetterie & fuites d'eau. Réparations et entretien pour installations sanitaires.</p>
-            </div>
-            <!-- Card 2 -->
-            <div class="card">
-                <i class="fa-solid fa-fire-burner"></i> &nbsp; <i class="fa-regular fa-snowflake"></i>
-                <h3>Service Chaud & Froid</h3>
-                <p>Installation, entretien et dépannage de chauffage central (Chaudière murale et radiateurs).</p>
-            </div>
-            <!-- Card 3 -->
-            <div class="card">
-                <i class="fa-solid fa-wind"></i>
-                <h3>Installation Climatiseur</h3>
-                <p>Installation professionnelle de systèmes de climatisation, split systems et recharges de gaz.</p>
-            </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#prof" onclick="toggleMenu()">👨‍🏫 Le Prof</a>
+  <a href="#bac" onclick="toggleMenu()">📄 Sujets BAC</a>
+  <a href="#inscription" onclick="toggleMenu()">✏️ S'inscrire</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div>
+    <div class="hero-badge"><span class="pulse-dot"></span>Cours de soutien — Toutes Filières</div>
+    <h1>
+      Maîtrisez le Français
+      <span class="line2">Réussissez votre BAC</span>
+    </h1>
+    <p class="hero-sub">
+      Avec <strong style="color:var(--text)">Prof. Benchine Said</strong>, préparez-vous aux examens du Baccalauréat algérien avec des cours de soutien personnalisés, des sujets officiels de 2010 à 2025 et leurs corrections complètes.
+    </p>
+    <div class="hero-btns">
+      <a href="#bac" class="btn-primary">📄 Voir les Sujets BAC</a>
+      <a href="#inscription" class="btn-secondary">✏️ S'inscrire aux cours</a>
+    </div>
+    <div class="hero-cards-wrap">
+      <div class="hero-cards">
+        <div class="hero-stat-card">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Années d'expérience</div>
         </div>
-    </section>
-
-    <!-- Bottom Section (Why Choose Us & Form) -->
-    <section class="bottom-section">
-        <!-- Left Side -->
-        <div class="left-column">
-            <h2 class="section-title">POURQUOI NOUS CHOISIR ?</h2>
-            <ul class="why-us-list">
-                <li><i class="fa-solid fa-circle-check"></i> Disponibilité 7j/7</li>
-                <li><i class="fa-solid fa-circle-check"></i> Qualité garantie</li>
-                <li><i class="fa-solid fa-circle-check"></i> Expertise certifiée</li>
-            </ul>
+        <div class="hero-stat-card">
+          <div class="stat-num">2010–2025</div>
+          <div class="stat-label">Sujets BAC disponibles</div>
         </div>
-
-        <!-- Right Side -->
-        <div class="right-column">
-            <h2 class="section-title">CONTACTEZ-NOUS</h2>
-            <form class="contact-form">
-                <div class="form-row">
-                    <input type="text" placeholder="Nom" class="form-group">
-                    <select class="form-group">
-                        <option>Particulier</option>
-                        <option>Professionnel</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <input type="email" placeholder="Email" class="form-group">
-                    <input type="text" placeholder="Service" class="form-group">
-                </div>
-                <input type="text" placeholder="Téléphone">
-                <textarea placeholder="Message"></textarea>
-                <button type="submit" class="submit-btn">ENVOYER</button>
-            </form>
-
-            <!-- UPDATED FOOTER INFO -->
-            <div class="contact-footer">
-                <div class="footer-details">
-                    <p><i class="fa-solid fa-phone"></i> <strong>05 60 89 82 08</strong></p>
-                    <p><i class="fa-solid fa-location-dot"></i> Cité 351, Boumerdès, Algérie</p>
-                </div>
-                
-                <div class="footer-socials">
-                    <span class="social-label">Nazim Plomberie services</span>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Filières couvertes</div>
         </div>
-    </section>
+        <div class="hero-stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Corrections incluses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- PROF -->
+<section class="prof-section" id="prof">
+  <div class="prof-grid">
+    <div class="prof-img-wrap reveal">
+      <div class="prof-avatar">🎓</div>
+      <div class="prof-badge-float">
+        <div class="badge-num">★ 4.9</div>
+        <div class="badge-lbl">Note des élèves</div>
+      </div>
+    </div>
+    <div class="prof-info reveal">
+      <div class="section-tag violet">Votre Professeur</div>
+      <h2>Benchine Said</h2>
+      <p class="subtitle">Professeur de Français · Lycée · Algérie</p>
+      <p>Passionné par l'enseignement du français depuis plus de 15 ans, M. Benchine Said accompagne les élèves de toutes les filières terminales vers la réussite au baccalauréat. Sa méthode allie rigueur grammaticale, expression écrite et compréhension approfondie des textes littéraires.</p>
+      <p style="margin-top:.8rem;">Ses cours de soutien couvrent l'ensemble des compétences évaluées à l'examen : compréhension de l'écrit, production écrite, étude de la langue et argumentation.</p>
+      <div class="prof-tags">
+        <span class="prof-tag">📝 Expression écrite</span>
+        <span class="prof-tag">📖 Compréhension</span>
+        <span class="prof-tag">🗣️ Argumentation</span>
+        <span class="prof-tag">📐 Grammaire</span>
+        <span class="prof-tag">✍️ Rédaction</span>
+      </div>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Filières enseignées :</p>
+      <div class="filieres-grid">
+        <div class="filiere-item sci">🔬 Sciences Exp.</div>
+        <div class="filiere-item math">📐 Mathématiques</div>
+        <div class="filiere-item tech">⚙️ Technique Math.</div>
+        <div class="filiere-item lett">📚 Lettres & Phil.</div>
+        <div class="filiere-item gest">💼 Gestion & Éco.</div>
+        <div class="filiere-item sci">🩺 Sciences Nature</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUJETS BAC -->
+<section id="bac">
+  <div class="section-header reveal">
+    <div class="section-tag cyan">Bibliothèque BAC</div>
+    <h2 class="section-title">Sujets officiels <span style="background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2010 — 2025</span></h2>
+    <p class="section-sub">Tous les sujets du Baccalauréat algérien avec corrections détaillées. Cliquez sur un sujet pour voir le contenu et la correction.</p>
+  </div>
+  <div class="bac-filters reveal">
+    <button class="filter-btn active" onclick="filterBac('all',this)">Toutes les années</button>
+    <button class="filter-btn" onclick="filterBac('recent',this)">2020–2025</button>
+    <button class="filter-btn" onclick="filterBac('mid',this)">2015–2019</button>
+    <button class="filter-btn" onclick="filterBac('old',this)">2010–2014</button>
+  </div>
+  <div class="bac-grid" id="bacGrid"></div>
+</section>
+
+<!-- INSCRIPTION -->
+<section class="inscr-section" id="inscription">
+  <div class="inscr-grid">
+    <div class="inscr-info reveal">
+      <div class="section-tag pink">Rejoindre les cours</div>
+      <h2 class="section-title">Inscrivez-vous<br>dès maintenant</h2>
+      <p>Rejoignez les élèves qui préparent leur BAC avec Prof. Benchine Said. Remplissez le formulaire et nous vous contacterons rapidement pour confirmer votre place.</p>
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card-icon v">✅</div>
+          <div class="info-card-text">
+            <strong>Cours collectifs & individuels</strong>
+            <span>Choisissez selon votre besoin et votre budget</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon t">📅</div>
+          <div class="info-card-text">
+            <strong>Horaires flexibles</strong>
+            <span>Sessions en semaine et weekend disponibles</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon l">📚</div>
+          <div class="info-card-text">
+            <strong>Toutes les filières</strong>
+            <span>Sciences, Lettres, Maths, Gestion, Technique</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inscr-form reveal" id="formWrap">
+      <h3>📋 Formulaire d'inscription</h3>
+      <p class="form-sub">Tous les champs sont obligatoires</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>NOM</label>
+          <input type="text" id="fNom" placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label>PRÉNOM</label>
+          <input type="text" id="fPrenom" placeholder="Votre prénom">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>NUMÉRO DE TÉLÉPHONE</label>
+        <input type="tel" id="fTel" placeholder="0XXX XX XX XX">
+      </div>
+      <div class="form-group">
+        <label>FILIÈRE</label>
+        <select id="fFiliere">
+          <option value="">— Sélectionnez votre filière —</option>
+          <option>Sciences Expérimentales</option>
+          <option>Mathématiques</option>
+          <option>Technique Mathématique</option>
+          <option>Lettres et Philosophie</option>
+          <option>Langues Étrangères</option>
+          <option>Gestion et Économie</option>
+          <option>Sciences de la Nature et de la Vie</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>TYPE DE COURS SOUHAITÉ</label>
+        <select id="fType">
+          <option value="">— Sélectionnez —</option>
+          <option>Cours collectif</option>
+          <option>Cours individuel</option>
+          <option>Les deux (collectif + individuel)</option>
+        </select>
+      </div>
+      <button class="submit-btn" onclick="submitForm()">Envoyer la demande d'inscription →</button>
+      <div class="success-msg" id="successMsg">
+        <div class="check">🎉</div>
+        <h4>Inscription reçue !</h4>
+        <p>Prof. Benchine Said vous contactera très prochainement. Bienvenue !</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Prof. Benchine <span>Said</span> · Français BAC</div>
+  <div class="footer-copy">© 2025 Tous droits réservés · Algérie</div>
+  <div class="footer-links">
+    <a href="#prof">Le Prof</a>
+    <a href="#bac">Sujets BAC</a>
+    <a href="#inscription">Inscription</a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <div class="modal-header">
+      <h3 id="modalTitle">Sujet BAC</h3>
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const subjects = [
+  {year:2025,filiere:"Toutes filières",icon:"📝",color:"blue",
+   sujet:`<b>Texte :</b> "Le progrès technologique est indéniable, mais il n'est pas sans conséquences sur les relations humaines. Les réseaux sociaux, censés nous rapprocher, nous éloignent parfois de la vraie communication."<br><br><b>Questions :</b><br>1. Dégagez le thème principal du texte. (2 pts)<br>2. Relevez deux arguments avancés par l'auteur. (3 pts)<br>3. Quelle est la thèse défendue ? (2 pts)<br>4. Expliquez l'expression soulignée "vraie communication". (2 pts)<br><br><b>Production écrite :</b> Rédigez un texte argumentatif (15-20 lignes) dans lequel vous expliquez si la technologie rapproche ou éloigne les gens.`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Thème principal :</b> L'impact ambigu de la technologie sur les relations humaines. La thèse nuancée souligne que le progrès technique, malgré ses promesses, génère un paradoxe communicationnel.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Arguments :</b> (a) Le progrès technologique est indéniable — admission de la réalité du progrès ; (b) Les réseaux sociaux nous éloignent de la "vraie" communication — critique des outils numériques.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Thèse :</b> Le progrès technologique, malgré ses avantages apparents, nuit à l'authenticité des relations interpersonnelles.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>"Vraie communication" :</b> Désigne un échange authentique, sincère et direct entre individus, opposé à l'interaction superficielle des réseaux sociaux.</div></div><div class='corr-step'><div class='step-num'>5</div><div><b>Modèle de production écrite :</b> Introduction (constater le phénomène) → Arguments pour le rapprochement (abolit les distances, accès à l'information) → Arguments contre (superficialité, addiction, isolement) → Conclusion nuancée (l'usage responsable est la clé).</div></div>`},
+  {year:2024,filiere:"Toutes filières",icon:"📄",color:"violet",
+   sujet:`<b>Texte :</b> "Lire, c'est voyager sans bouger de chez soi. La lecture est cet art de se nourrir des mots pour construire des mondes intérieurs riches et profonds. Dans une ère de divertissements instantanés, la lecture résiste."<br><br><b>Questions :</b><br>1. Quel est le type de ce texte ? Justifiez. (2 pts)<br>2. Quels sont les avantages de la lecture évoqués ? (3 pts)<br>3. Trouvez dans le texte un synonyme de "enrichir". (1 pt)<br>4. Quelle figure de style est utilisée dans "voyager sans bouger" ? (2 pts)<br><br><b>Production écrite :</b> "La lecture est une nécessité dans le monde moderne." Discutez.`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Type :</b> Texte argumentatif (présence de thèse, d'arguments, connecteurs logiques et visée persuasive).</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Avantages :</b> (a) voyage imaginaire (évasion) ; (b) enrichissement personnel intérieur ; (c) résistance culturelle à la médiocrité des divertissements.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Synonyme de "enrichir" :</b> "nourrir" (se nourrir des mots).</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Figure de style :</b> Oxymore / paradoxe — "voyager sans bouger" associe deux réalités contradictoires pour exprimer la puissance de l'imaginaire littéraire.</div></div>`},
+  {year:2023,filiere:"Sciences / Maths",icon:"🔬",color:"cyan",
+   sujet:`<b>Texte :</b> "La science est une aventure collective. Elle avance par essais, erreurs et rectifications. Le scientifique doute, questionne et remet constamment ses certitudes en cause pour approcher la vérité."<br><br><b>Questions :</b><br>1. Dégagez le plan du texte. (3 pts)<br>2. Quel est le champ lexical dominant ? (2 pts)<br>3. Relevez les verbes d'action associés au scientifique. (2 pts)<br>4. Que signifie "approcher la vérité" ? (2 pts)<br><br><b>Production écrite :</b> Le doute est-il un atout ou un obstacle pour le scientifique ? Argumentez.`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Plan :</b> Idée 1 : La science est une entreprise collective et progressive. Idée 2 : La méthode scientifique repose sur le doute méthodique et la remise en question permanente.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Champ lexical :</b> Champ de la connaissance et de la méthode scientifique : "essais", "erreurs", "rectifications", "doute", "vérité", "certitudes".</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Verbes d'action :</b> "doute", "questionne", "remet en cause" → caractérisent l'attitude épistémique du chercheur.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>"Approcher la vérité" :</b> Signifie tendre vers la connaissance exacte sans jamais prétendre l'atteindre définitivement — idée de vérité asymptotique.</div></div>`},
+  {year:2022,filiere:"Lettres / Langues",icon:"📚",color:"pink",
+   sujet:`<b>Texte :</b> "La langue est la maison de l'être. Parler, c'est exister. Une langue qui meurt, c'est une vision du monde qui disparaît à jamais. La diversité linguistique est une richesse inestimable de l'humanité."<br><br><b>Questions :</b><br>1. Quelle est la thèse défendue par l'auteur ? (2 pts)<br>2. Comment l'auteur illustre-t-il l'importance des langues ? (3 pts)<br>3. Que signifie "vision du monde" dans ce contexte ? (2 pts)<br>4. Quel temps verbal domine ? Justifiez son emploi. (2 pts)<br><br><b>Production écrite :</b> Faut-il préserver les langues minoritaires ? Donnez votre point de vue.`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Thèse :</b> La diversité linguistique constitue un patrimoine irremplaçable de l'humanité et chaque langue est une manière unique d'appréhender le réel.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Illustration :</b> Par l'analogie "langue = maison de l'être" (métaphore heideggerienne) et par l'argument de la disparition irrémédiable — une langue morte emporte avec elle une "vision du monde" unique.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>"Vision du monde" :</b> Weltanschauung — ensemble des représentations, valeurs, façons de percevoir la réalité propres à une communauté culturelle et encodées dans sa langue.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Temps dominant :</b> Présent de vérité générale — exprime des affirmations universelles, intemporelles et des constats valables en tout temps.</div></div>`},
+  {year:2021,filiere:"Toutes filières",icon:"🌿",color:"emerald",
+   sujet:`<b>Texte :</b> "L'environnement est notre bien commun. Face au réchauffement climatique, chaque individu a une responsabilité. Les gestes écologiques du quotidien, aussi minimes soient-ils, contribuent à préserver notre planète."<br><br><b>Questions :</b><br>1. De quoi parle ce texte ? (2 pts)<br>2. À qui l'auteur s'adresse-t-il ? Comment le savez-vous ? (2 pts)<br>3. Relevez deux arguments en faveur de l'écologie. (2 pts)<br>4. Expliquez "bien commun". (2 pts)<br><br><b>Production écrite :</b> Rédigez un appel à l'action pour sensibiliser vos camarades à l'écologie.`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Sujet :</b> La responsabilité individuelle face à la crise environnementale et l'importance des comportements écologiques quotidiens.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Destinataire :</b> L'auteur s'adresse à tout individu/citoyen → pronom "chaque individu" à portée universelle, inclusif et interpellant.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Arguments :</b> (a) L'environnement est un patrimoine partagé qui mérite protection ; (b) les petits gestes individuels ont un impact collectif significatif.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>"Bien commun" :</b> Ce qui appartient à tous et dont la préservation bénéficie à l'ensemble de la collectivité, sans appropriation exclusive.</div></div>`},
+  {year:2020,filiere:"Toutes filières",icon:"🤝",color:"amber",
+   sujet:`<b>Texte :</b> "La solidarité est le ciment des sociétés humaines. En temps de crise, c'est elle qui permet aux communautés de résister et de surmonter les épreuves. Sans entraide, nul ne peut faire face seul aux défis collectifs."<br><br><b>Questions :</b><br>1. Quelle est l'idée générale du texte ? (2 pts)<br>2. Identifiez la figure de style dans "ciment des sociétés". (2 pts)<br>3. Trouvez dans le texte un antonyme de "abandon". (1 pt)<br>4. Quelle est la visée de ce texte ? (2 pts)<br><br><b>Production écrite :</b> La solidarité est-elle encore une valeur de notre époque ? Discutez.`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Idée générale :</b> La solidarité est une valeur fondamentale qui soude les communautés et les rend capables de traverser les crises collectives.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Figure de style :</b> Métaphore — "ciment" (matériau qui lie) appliqué à la solidarité suggère qu'elle unit et consolide le tissu social.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Antonyme de "abandon" :</b> "entraide" (solidarité active, soutien mutuel).</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Visée :</b> Visée argumentative et didactique — convaincre le lecteur de l'importance de la solidarité et l'inciter à adopter des comportements solidaires.</div></div>`},
+  {year:2019,filiere:"Sciences / Maths",icon:"🧪",color:"blue",
+   sujet:`<b>Texte :</b> "L'innovation est le moteur du progrès. De la révolution industrielle à l'intelligence artificielle, chaque époque a su transformer les défis en opportunités grâce à l'ingéniosité humaine."<br><br><b>Questions :</b><br>1. Quel est le mode de développement utilisé ? (2 pts)<br>2. Relevez le connecteur logique et son rapport. (2 pts)<br>3. Qu'est-ce que l'auteur entend par "opportunités" ? (2 pts)<br>4. Donnez le contraire de "progrès". (1 pt)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Mode de développement :</b> Développement par illustration/exemples historiques (révolution industrielle → IA) servant à démontrer la thèse sur l'innovation.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Connecteur logique :</b> "grâce à" — exprime la cause positive, le moyen, l'instrument du succès (rapport de causalité favorable).</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>"Opportunités" :</b> Possibilités de développement, occasions de créer de nouvelles solutions et de progresser à partir de situations difficiles.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Contraire de "progrès" :</b> "régression" ou "déclin".</div></div>`},
+  {year:2018,filiere:"Lettres / Langues",icon:"✍️",color:"violet",
+   sujet:`<b>Texte :</b> "L'écriture est mémoire. Elle arrache à l'oubli les moments fugaces et les pérennise. Écrire, c'est lutter contre le temps, c'est inscrire sa trace dans l'éternité."<br><br><b>Questions :</b><br>1. Dégagez les idées essentielles du texte. (3 pts)<br>2. Expliquez la métaphore "arrache à l'oubli". (2 pts)<br>3. Identifiez le procédé stylistique dans "c'est lutter...c'est inscrire". (2 pts)<br>4. Donnez un synonyme de "fugaces". (1 pt)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Idées essentielles :</b> Idée 1 : L'écriture est une forme de mémoire qui préserve ce qui serait autrement perdu. Idée 2 : L'écriture est un acte de résistance contre la fugacité du temps.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>"Arrache à l'oubli" :</b> Métaphore forte — "arracher" implique un effort violent contre la force naturelle de l'oubli ; l'écriture est présentée comme une lutte active contre l'effacement.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Procédé stylistique :</b> Anaphore — répétition de "c'est" en tête de proposition ; renforce le rythme et accentue la définition de l'écriture par accumulation.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Synonyme de "fugaces" :</b> "éphémères", "passagers", "brefs".</div></div>`},
+  {year:2017,filiere:"Toutes filières",icon:"🌍",color:"emerald",
+   sujet:`<b>Texte :</b> "Le dialogue interculturel est une nécessité dans un monde globalisé. La rencontre des civilisations, loin d'être un danger, est une source d'enrichissement mutuel quand elle est fondée sur le respect."<br><br><b>Questions :</b><br>1. Quel est le point de vue de l'auteur ? (2 pts)<br>2. À quelle condition le dialogue est-il enrichissant selon l'auteur ? (2 pts)<br>3. Relevez une opposition dans le texte. (2 pts)<br>4. Que signifie "globalisé" ? (2 pts)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Point de vue :</b> Positif et optimiste — l'auteur prône le dialogue interculturel comme une valeur et une nécessité, non comme une menace.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Condition :</b> Le dialogue est enrichissant à condition d'être "fondé sur le respect" mutuel des cultures et des différences.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Opposition :</b> "loin d'être un danger" (idée rejetée) ↔ "source d'enrichissement" (thèse défendue) — antithèse structurante.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>"Globalisé" :</b> Unifié, interconnecté à l'échelle mondiale ; désigne un monde où les échanges économiques, culturels et technologiques abolissent les frontières.</div></div>`},
+  {year:2016,filiere:"Sciences / Maths",icon:"💡",color:"amber",
+   sujet:`<b>Texte :</b> "L'énergie solaire représente l'avenir de l'humanité. Inépuisable et non polluante, elle offre une alternative crédible aux énergies fossiles dont l'exploitation excessive menace l'équilibre de notre planète."<br><br><b>Questions :</b><br>1. Quelle problématique soulève ce texte ? (2 pts)<br>2. Quels sont les avantages de l'énergie solaire mentionnés ? (3 pts)<br>3. Que dénonce l'auteur ? (2 pts)<br>4. Donnez le contraire de "excessive". (1 pt)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Problématique :</b> La transition énergétique : comment remplacer les énergies fossiles polluantes par des alternatives durables et respectueuses de l'environnement ?</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Avantages :</b> (a) inépuisable — ressource renouvelable indéfiniment ; (b) non polluante — sans émissions nocives ; (c) alternative crédible et viable aux fossiles.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Dénonciation :</b> L'exploitation excessive des énergies fossiles et ses conséquences destructrices sur l'équilibre écologique de la planète.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Contraire de "excessive" :</b> "modérée", "raisonnable", "mesurée".</div></div>`},
+  {year:2015,filiere:"Toutes filières",icon:"🎭",color:"pink",
+   sujet:`<b>Texte :</b> "Le théâtre est un miroir tendu à la société. Il révèle ses vices, ses vertus, ses contradictions. Sur scène, la fiction devient un outil de prise de conscience collective."<br><br><b>Questions :</b><br>1. Quel est le rôle du théâtre selon l'auteur ? (2 pts)<br>2. Expliquez l'image "miroir tendu". (2 pts)<br>3. Relevez deux termes appartenant au champ lexical du théâtre. (2 pts)<br>4. Reformulez "prise de conscience collective". (2 pts)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Rôle du théâtre :</b> Fonction critique et sociale — le théâtre reflète et révèle la réalité sociale pour provoquer une réflexion collective sur les comportements humains.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>"Miroir tendu" :</b> Métaphore — le théâtre "tend" (présente, offre) un reflet fidèle et parfois cruel de la société, comme un miroir révèle l'image qu'on préfère ne pas voir.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Champ lexical du théâtre :</b> "scène" et "fiction" (ou "théâtre" lui-même).</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Reformulation :</b> "éveil d'une réflexion partagée par l'ensemble du public" ou "compréhension commune d'une réalité sociale par un groupe".</div></div>`},
+  {year:2014,filiere:"Toutes filières",icon:"📡",color:"cyan",
+   sujet:`<b>Texte :</b> "Les médias façonnent notre vision du monde. Ils ont le pouvoir d'informer mais aussi de désinformer. Face à ce flot d'informations, l'esprit critique devient la première des vertus citoyennes."<br><br><b>Questions :</b><br>1. Quelle est la thèse principale ? (2 pts)<br>2. Quels sont les deux rôles contradictoires des médias ? (2 pts)<br>3. Que signifie "esprit critique" ? (2 pts)<br>4. Quel mot de liaison indique l'opposition ? (1 pt)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Thèse :</b> Face à la puissance ambivalente des médias, l'esprit critique est une compétence citoyenne indispensable pour naviguer l'espace informationnel.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Rôles contradictoires :</b> (a) Informer — transmettre des faits vrais et utiles ; (b) Désinformer — diffuser de fausses informations, manipuler l'opinion.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>"Esprit critique" :</b> Capacité à analyser, questionner, recouper et évaluer les informations reçues plutôt que de les accepter passivement.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Mot de liaison :</b> "mais" — conjonction adversative exprimant l'opposition entre informer et désinformer.</div></div>`},
+  {year:2013,filiere:"Lettres / Langues",icon:"📜",color:"violet",
+   sujet:`<b>Texte :</b> "La poésie n'est pas un luxe. Elle est la voix de l'intime, le langage de l'âme humaine. Elle dit ce que la prose ne saurait exprimer, ce qui déborde les mots ordinaires."<br><br><b>Questions :</b><br>1. Comment l'auteur définit-il la poésie ? (2 pts)<br>2. Quel rapport entretient la poésie avec la prose selon ce texte ? (2 pts)<br>3. Relevez deux métaphores. (2 pts)<br>4. Quel est le registre de ce texte ? (2 pts)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Définition :</b> La poésie est présentée comme l'expression la plus profonde de l'intériorité humaine, un langage supérieur capable de dire l'indicible.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Rapport poésie/prose :</b> Rapport de complémentarité et de dépassement — la poésie exprime ce que la prose ne peut pas atteindre, ses "débordements" intimes.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Métaphores :</b> "voix de l'intime" (la poésie comme organe de parole du for intérieur) ; "langage de l'âme" (la poésie comme idiome de la vie intérieure).</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Registre :</b> Lyrique et poétique — subjectivité affirmée, images fortes, valorisation de la sensibilité et de l'émotion sur la raison discursive.</div></div>`},
+  {year:2012,filiere:"Sciences / Maths",icon:"🚀",color:"blue",
+   sujet:`<b>Texte :</b> "La conquête spatiale est l'une des plus grandes aventures de l'humanité. Elle nous a permis de comprendre notre place dans l'univers et a engendré des avancées technologiques considérables au service de notre vie quotidienne."<br><br><b>Questions :</b><br>1. Quel bilan l'auteur dresse-t-il de la conquête spatiale ? (3 pts)<br>2. Relevez un modalisateur et son effet. (2 pts)<br>3. Donnez un synonyme de "engendré". (1 pt)<br>4. Identifiez la structure argumentative. (2 pts)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Bilan :</b> Bilan positif et laudatif : la conquête spatiale est présentée comme une double réussite — philosophique (compréhension de notre place) et pratique (retombées technologiques quotidiennes).</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Modalisateur :</b> "considérables" — adjectif évaluatif positif qui amplifie la portée des avancées technologiques ; exprime l'enthousiasme de l'auteur.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Synonyme de "engendré" :</b> "produit", "généré", "suscité", "provoqué".</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Structure argumentative :</b> Thèse (conquête = grande aventure) + Arguments (connaissance de l'univers + retombées technologiques) — structure démonstrative linéaire.</div></div>`},
+  {year:2011,filiere:"Toutes filières",icon:"🌱",color:"emerald",
+   sujet:`<b>Texte :</b> "L'éducation est la clé du développement. Un peuple instruit est un peuple libre, capable de prendre en main son destin. Investir dans l'école, c'est investir dans l'avenir de la nation."<br><br><b>Questions :</b><br>1. Quelle est la valeur accordée à l'éducation dans ce texte ? (2 pts)<br>2. Relevez un connecteur logique et précisez son rapport. (2 pts)<br>3. Expliquez "prendre en main son destin". (2 pts)<br>4. Identifiez le type d'argument utilisé. (2 pts)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>Valeur de l'éducation :</b> Valeur fondamentale et instrumentale — l'éducation est à la fois un droit humain (liberté) et un investissement stratégique pour le développement national.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Connecteur logique :</b> "c'est" (dans "investir dans l'école, c'est investir dans l'avenir") — rapport d'équivalence/conséquence ; la cause et l'effet sont présentés comme identiques.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>"Prendre en main son destin" :</b> Expression idiomatique — être maître de son avenir, agir avec autonomie et responsabilité sur le cours de sa propre vie collective.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Type d'argument :</b> Argument de valeur (liberté) et argument pragmatique (utilité, efficacité de l'investissement éducatif pour le futur).</div></div>`},
+  {year:2010,filiere:"Toutes filières",icon:"📰",color:"amber",
+   sujet:`<b>Texte :</b> "La presse est le quatrième pouvoir. Elle joue un rôle essentiel dans la démocratie en informant les citoyens et en contrôlant les institutions. Une presse libre est le gage d'une société saine."<br><br><b>Questions :</b><br>1. Expliquez l'expression "quatrième pouvoir". (2 pts)<br>2. Quels sont les deux rôles de la presse évoqués ? (3 pts)<br>3. Quelle est la condition d'une presse efficace selon l'auteur ? (2 pts)<br>4. Quel est le mode de raisonnement utilisé ? (2 pts)`,
+   correction:`<div class='corr-step'><div class='step-num'>1</div><div><b>"Quatrième pouvoir" :</b> Après les trois pouvoirs traditionnels (exécutif, législatif, judiciaire), la presse est considérée comme un contre-pouvoir informel mais essentiel qui surveille et équilibre les autres.</div></div><div class='corr-step'><div class='step-num'>2</div><div><b>Rôles de la presse :</b> (a) Informer les citoyens — assurer la transparence et l'accès à l'information ; (b) Contrôler les institutions — exercer une surveillance critique sur les pouvoirs publics.</div></div><div class='corr-step'><div class='step-num'>3</div><div><b>Condition d'efficacité :</b> La liberté de la presse — sans indépendance, la presse ne peut ni informer honnêtement ni exercer son rôle de contrôle démocratique.</div></div><div class='corr-step'><div class='step-num'>4</div><div><b>Mode de raisonnement :</b> Raisonnement déductif — part d'une affirmation générale (presse = 4e pouvoir) vers des applications particulières (rôles spécifiques) et une conclusion (société saine).</div></div>`},
+];
+
+const colorMap={
+  blue:{grad:"linear-gradient(135deg,#3b82f6,#22d3ee)",glow:"rgba(59,130,246,0.25)",tag:"rgba(59,130,246,0.15)",tagc:"#3b82f6"},
+  violet:{grad:"linear-gradient(135deg,#a78bfa,#f472b6)",glow:"rgba(167,139,250,0.25)",tag:"rgba(167,139,250,0.15)",tagc:"#a78bfa"},
+  cyan:{grad:"linear-gradient(135deg,#22d3ee,#3b82f6)",glow:"rgba(34,211,238,0.25)",tag:"rgba(34,211,238,0.12)",tagc:"#22d3ee"},
+  pink:{grad:"linear-gradient(135deg,#f472b6,#a78bfa)",glow:"rgba(244,114,182,0.25)",tag:"rgba(244,114,182,0.12)",tagc:"#f472b6"},
+  emerald:{grad:"linear-gradient(135deg,#34d399,#22d3ee)",glow:"rgba(52,211,153,0.25)",tag:"rgba(52,211,153,0.12)",tagc:"#34d399"},
+  amber:{grad:"linear-gradient(135deg,#fbbf24,#f97316)",glow:"rgba(251,191,36,0.25)",tag:"rgba(251,191,36,0.12)",tagc:"#fbbf24"},
+};
+
+function renderBac(filter='all'){
+  const grid=document.getElementById('bacGrid');
+  const filtered=subjects.filter(s=>{
+    if(filter==='recent') return s.year>=2020;
+    if(filter==='mid') return s.year>=2015&&s.year<2020;
+    if(filter==='old') return s.year<2015;
+    return true;
+  });
+  grid.innerHTML=filtered.map((s,i)=>{
+    const c=colorMap[s.color];
+    return `<div class="bac-card reveal" onclick="openModal(${subjects.indexOf(s)})" style="animation-delay:${i*0.05}s">
+      <div class="bac-card-top">
+        <div class="bac-year-badge" style="background:${c.grad}">${s.year}</div>
+        <div class="bac-icon">${s.icon}</div>
+        <h3>Sujet BAC ${s.year}</h3>
+        <p class="bac-filiere" style="color:${c.tagc}">${s.filiere}</p>
+      </div>
+      <div class="bac-card-bot">
+        <div class="bac-meta">
+          <span class="meta-tag subj">📄 Sujet</span>
+          <span class="meta-tag corr">✅ Correction</span>
+        </div>
+        <div class="bac-open-btn">→</div>
+      </div>
+    </div>`;
+  }).join('');
+  observeReveal();
+}
+
+function filterBac(f,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBac(f);
+}
+
+function openModal(i){
+  const s=subjects[i];
+  const c=colorMap[s.color];
+  document.getElementById('modalTitle').innerHTML=`${s.icon} Sujet BAC Français ${s.year} — <span style="color:${c.tagc}">${s.filiere}</span>`;
+  document.getElementById('modalBody').innerHTML=`
+    <div class="modal-section">
+      <h4>📄 Sujet officiel</h4>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:1.2rem;line-height:1.9;font-size:.92rem;color:var(--text);">${s.sujet}</div>
+    </div>
+    <div class="modal-section">
+      <h4>✅ Correction détaillée</h4>
+      <div class="correction-box">${s.correction}</div>
+    </div>`;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e){
+  if(e.target.id==='modal') document.getElementById('modal').classList.remove('open');
+}
+
+function submitForm(){
+  const nom=document.getElementById('fNom').value.trim();
+  const prenom=document.getElementById('fPrenom').value.trim();
+  const tel=document.getElementById('fTel').value.trim();
+  const filiere=document.getElementById('fFiliere').value;
+  const type=document.getElementById('fType').value;
+  if(!nom||!prenom||!tel||!filiere||!type){
+    alert('⚠️ Veuillez remplir tous les champs.');return;
+  }
+  document.querySelectorAll('#formWrap input,#formWrap select,#formWrap .submit-btn').forEach(el=>el.style.display='none');
+  document.getElementById('successMsg').style.display='block';
+}
+
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function observeReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
+}
+
+renderBac();
+observeReveal();
+</script>
 </body>
 </html>
